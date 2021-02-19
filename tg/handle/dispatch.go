@@ -53,6 +53,8 @@ func dispatchUpdate(general *tg.General, sessionTelegramID int, update telegram.
 	activateHandler(s, update,
 		&StartHandler{},
 		&InlineHandler{},
+
+		&AnyMessageHandler{},
 	)
 
 	err = s.SaveState()

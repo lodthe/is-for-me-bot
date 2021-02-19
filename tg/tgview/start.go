@@ -7,7 +7,7 @@ import (
 type Start struct {
 }
 
-func (st Start) Send(s *tg.Session) {
+func (Start) Send(s *tg.Session) {
 	_ = s.SendInlinePhoto(`Привет! Я умею отправлять сообщение «🥺👉👈». Для этого введи @isformebot в поле для сообщения в любом чате.
 
 ~~~
