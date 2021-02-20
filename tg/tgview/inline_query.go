@@ -7,15 +7,18 @@ import (
 )
 
 const emojis = "👉👈\U0001F97A"
+const reversedEmojis = "\U0001F97A👉👈"
 
 type InlineQuery struct {
 }
 
 func (InlineQuery) Send(s *tg.Session, query *telegram.InlineQuery) {
-	content := telegram.InputTextMessageContent{
-		MessageText:           emojis,
-		ParseMode:             tg.ParseMode,
-		DisableWebPagePreview: true,
+	getContent := func(msg string) telegram.InputTextMessageContent {
+		return telegram.InputTextMessageContent{
+			MessageText:           msg,
+			ParseMode:             tg.ParseMode,
+			DisableWebPagePreview: true,
+		}
 	}
 
 	inlineResults := []telegram.InlineQueryResult{
@@ -23,15 +26,15 @@ func (InlineQuery) Send(s *tg.Session, query *telegram.InlineQuery) {
 			Type:                "article",
 			ID:                  "send_is_for_me_ru",
 			Title:               emojis,
-			InputMessageContent: content,
+			InputMessageContent: getContent(emojis),
 			Description:         "Нажми сюда, чтобы отправить " + emojis,
 		},
 		telegram.InlineQueryResultArticle{
 			Type:                "article",
 			ID:                  "send_is_for_me_en",
-			Title:               emojis,
-			InputMessageContent: content,
-			Description:         "Tap here to send " + emojis,
+			Title:               reversedEmojis,
+			InputMessageContent: getContent(reversedEmojis),
+			Description:         "Tap here to send " + reversedEmojis,
 		},
 	}
 

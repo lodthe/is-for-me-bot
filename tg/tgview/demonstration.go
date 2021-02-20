@@ -15,4 +15,3 @@ func (Demonstration) Send(s *tg.Session) {
 Just type @isformebot in the text input field in any chat. 
 `, "demonstration.png", nil)
 }
-
